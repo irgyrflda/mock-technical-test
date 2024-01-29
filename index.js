@@ -6,6 +6,7 @@ const port = process.env.APP_PORT || 3000;
 
 // Import routes here
 const exampleRoute = require("./routes/examples");
+const routes = require('./routes/index');
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -13,9 +14,11 @@ app.use(express.urlencoded({ extended: true }))
 // Use your route here
 app.use("/api/v1/example", exampleRoute);
 
-app.get('/', (req, res) => {
-  res.json('Okay')
-});
+app.use("/", routes);
+
+// app.get('/', (req, res) => {
+//   res.json('Okay')
+// });
 
 app.listen(
   port,
